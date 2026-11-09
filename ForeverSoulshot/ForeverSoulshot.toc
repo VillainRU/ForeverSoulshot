@@ -1,7 +1,7 @@
 ## Interface: 16001
 ## Title: Forever Soulshot
-## Notes: Lineage 2 impact sounds for auto attacks and offensive abilities.
-## Version: 0.4.1
+## Notes: Custom impact sounds for auto attacks and offensive abilities.
+## Version: 0.4.2
 ## SavedVariables: ForeverSoulshotDB
 
 ForeverSoulshot.lua
