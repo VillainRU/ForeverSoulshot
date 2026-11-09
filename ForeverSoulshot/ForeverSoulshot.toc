@@ -1,7 +1,7 @@
 ## Interface: 16001
 ## Title: Forever Soulshot
 ## Notes: Custom impact sounds for auto attacks and offensive abilities.
-## Version: 0.4.2
+## Version: 0.4.3
 ## SavedVariables: ForeverSoulshotDB
 
 ForeverSoulshot.lua

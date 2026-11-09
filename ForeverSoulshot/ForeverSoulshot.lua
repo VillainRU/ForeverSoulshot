@@ -18,12 +18,7 @@ local meleeSounds = {
     [weapon.Mace2H] = "mace",
     [weapon.Dagger] = "dagger",
 }
-local previews = {
-    { sound = "greatsword", label = "Двуручный меч" },
-    { sound = "mace", label = "Булава" },
-    { sound = "dagger", label = "Кинжал" },
-    { sound = "bow", label = "Лук" },
-}
+local testSounds = { greatsword = true, mace = true, dagger = true, bow = true, soulshot = true }
 local swing = Enum.PlayerSwingType
 local swingSlots = {
     [swing.MainHand] = 16,
@@ -111,6 +106,18 @@ local function preview(sound)
     end
 end
 
+local function testSound()
+    local sound
+    if playerClass == "HUNTER" and weaponSubclass(swingSlots[swing.Ranged]) == weapon.Bows then
+        sound = "bow"
+    else
+        sound = meleeSounds[weaponSubclass(swingSlots[swing.MainHand])]
+            or meleeSounds[weaponSubclass(swingSlots[swing.OffHand])]
+    end
+    if sound and play(sound) then return end
+    preview("soulshot")
+end
+
 local function registerSettings()
     if not (Settings and Settings.RegisterCanvasLayoutCategory and Settings.RegisterAddOnCategory) then return end
 
@@ -141,24 +148,11 @@ local function registerSettings()
         lastOption = check
     end
 
-    local function addButton(anchor, label, onClick)
-        local button = CreateFrame("Button", nil, panel, "UIPanelButtonTemplate")
-        button:SetPoint("TOPLEFT", anchor, "BOTTOMLEFT", 0, -8)
-        button:SetSize(210, 26)
-        button:SetText(label)
-        button:SetScript("OnClick", onClick)
-        return button
-    end
-
-    local previewTitle = panel:CreateFontString(nil, "ARTWORK", "GameFontNormal")
-    previewTitle:SetPoint("TOPLEFT", lastOption, "BOTTOMLEFT", 0, -24)
-    previewTitle:SetText("Проверка звуков")
-
-    local anchor = previewTitle
-    for _, entry in ipairs(previews) do
-        local sound = entry.sound
-        anchor = addButton(anchor, entry.label, function() preview(sound) end)
-    end
+    local testButton = CreateFrame("Button", nil, panel, "UIPanelButtonTemplate")
+    testButton:SetPoint("TOPLEFT", lastOption, "BOTTOMLEFT", 0, -16)
+    testButton:SetSize(100, 26)
+    testButton:SetText("Test")
+    testButton:SetScript("OnClick", testSound)
 
     local category = Settings.RegisterCanvasLayoutCategory(panel, titleText)
     Settings.RegisterAddOnCategory(category)
@@ -177,12 +171,13 @@ SlashCmdList.FOREVERSOULSHOT = function(input)
         Settings.OpenToCategory(category:GetID())
         return
     elseif command == "test" then
-        for _, entry in ipairs(previews) do
-            if argument == entry.sound then
-                preview(entry.sound)
-                return
-            end
+        if argument == "" then
+            testSound()
+            return
+        elseif testSounds[argument] then
+            preview(argument)
+            return
         end
     end
-    say("/soulshot options | /soulshot test greatsword, mace, dagger или bow")
+    say("/soulshot options | /soulshot test [greatsword, mace, dagger, bow, soulshot]")
 end

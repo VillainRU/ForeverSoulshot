@@ -8,7 +8,7 @@ Forever Soulshot adds configurable weapon sound effects to **World of Warcraft: 
 
 1. Copy the `ForeverSoulshot` folder to `_forever_/Interface/AddOns/`.
 2. The release contains the addon code and setup instructions. Name your sound files `greatsword.ogg`, `mace.ogg`, `dagger.ogg`, `bow.ogg`, and `soulshot.ogg` (general effect).
-3. Restart WoW, then run `/soulshot` or open **Settings → AddOns → Forever Soulshot** to choose and preview sounds. The addon uses the game's sound effects (SFX) channel.
+3. Restart WoW, then run `/soulshot` or open **Settings → AddOns → Forever Soulshot** to choose when sounds play. Click **Test** to try the equipped weapon sound, with `soulshot.ogg` as a fallback. The addon uses the game's sound effects (SFX) channel.
 
 Sounds follow swings, shots, and successful casts, so they may also play when an attack misses. The combat log can stay closed. Offensive abilities whose spell IDs the client hides are skipped.
 
@@ -24,7 +24,7 @@ Forever Soulshot добавляет настраиваемые звуки ору
 
 1. Скопируйте папку `ForeverSoulshot` в `_forever_/Interface/AddOns/`.
 2. В релиз входят код аддона и инструкция. Назовите файлы звуков так: `greatsword.ogg`, `mace.ogg`, `dagger.ogg`, `bow.ogg` и `soulshot.ogg` (общий эффект).
-3. Перезапустите WoW и введите `/soulshot` или откройте **Настройки → Аддоны → Forever Soulshot**. Там можно выбрать и прослушать звуки. Громкость регулируется через игровые звуковые эффекты (SFX).
+3. Перезапустите WoW и введите `/soulshot` или откройте **Настройки → Аддоны → Forever Soulshot**. Там можно выбрать, когда звучат эффекты. Кнопка **Test** проверяет звук экипированного оружия и при необходимости пробует `soulshot.ogg`. Громкость регулируется через игровые звуковые эффекты (SFX).
 
 Звук привязан к взмаху, выстрелу или успешному применению умения, поэтому может прозвучать и при промахе. Журнал боя можно держать закрытым. Умения, ID которых клиент скрывает, пропускаются.
 
