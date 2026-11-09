@@ -18,7 +18,7 @@ local meleeSounds = {
     [weapon.Mace2H] = "mace",
     [weapon.Dagger] = "dagger",
 }
-local testSounds = { greatsword = true, mace = true, dagger = true, bow = true, soulshot = true }
+local testSounds = { greatsword = true, mace = true, dagger = true, bow = true }
 local swing = Enum.PlayerSwingType
 local swingSlots = {
     [swing.MainHand] = 16,
@@ -75,7 +75,7 @@ local function playAbility(spellID)
     if playerClass == "HUNTER" and ranged and weaponSubclass(swingSlots[swing.Ranged]) == weapon.Bows then
         sound = "bow"
     end
-    play(sound or "soulshot")
+    if sound then play(sound) end
 end
 
 local frame = CreateFrame("Frame")
@@ -114,8 +114,11 @@ local function testSound()
         sound = meleeSounds[weaponSubclass(swingSlots[swing.MainHand])]
             or meleeSounds[weaponSubclass(swingSlots[swing.OffHand])]
     end
-    if sound and play(sound) then return end
-    preview("soulshot")
+    if sound then
+        preview(sound)
+    else
+        say("Для проверки экипируйте двуручный меч, булаву, кинжал или лук.")
+    end
 end
 
 local function registerSettings()
@@ -179,5 +182,5 @@ SlashCmdList.FOREVERSOULSHOT = function(input)
             return
         end
     end
-    say("/soulshot options | /soulshot test [greatsword, mace, dagger, bow, soulshot]")
+    say("/soulshot options | /soulshot test [greatsword, mace, dagger, bow]")
 end

@@ -5,7 +5,6 @@ greatsword.ogg - Two-handed sword / Двуручный меч
 mace.ogg - Mace / Булава
 dagger.ogg - Dagger / Кинжал
 bow.ogg - Bow / Лук
-soulshot.ogg - General ability sound / Общий звук умения
 
 Restart WoW after adding files, then type /soulshot to preview.
 После добавления файлов перезапустите WoW и введите /soulshot.
